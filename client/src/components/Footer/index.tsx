@@ -1,12 +1,11 @@
 import React from 'react';
-import { IntlShape, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { useTheme } from '../../hooks/useTheme';
-import { ThemeContextProps } from '../../types';
 import { FooterWrapper } from './style';
 
 const Footer: React.FC = () => {
-  const { formatMessage }: { formatMessage: IntlShape['formatMessage'] } = useIntl();
-  const { theme }: ThemeContextProps = useTheme();
+  const { formatMessage } = useIntl();
+  const { theme } = useTheme();
 
   return (
     <FooterWrapper data-testid="footer" theme={theme}>

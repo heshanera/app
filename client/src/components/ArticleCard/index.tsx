@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { IntlShape, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { useTheme } from '../../hooks/useTheme';
-import { Article, Image, ThemeContextProps } from '../../types';
+import { Article, Image } from '../../types';
 import { ArticleCardWrapper } from './style';
 
 type Props = {
@@ -9,9 +9,8 @@ type Props = {
 };
 
 const ArticleCard: React.FC<Props> = ({ article }) => {
-  const { theme }: ThemeContextProps = useTheme();
-  const { formatNumber }: { formatNumber: IntlShape['formatNumber'] } = useIntl();
-  const { formatMessage }: { formatMessage: IntlShape['formatMessage'] } = useIntl();
+  const { theme } = useTheme();
+  const { formatNumber, formatMessage } = useIntl();
 
   const [selectedImage, setSelectedImage] = useState<number>(0);
 
@@ -48,7 +47,7 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
       </div>
 
       <button className="add-to-cart-button">
-        {`${formatMessage({ id: 'addToCart', defaultMessage: 'Add to cart' })}`}
+        {formatMessage({ id: 'addToCart', defaultMessage: 'Add to cart' })}
       </button>
     </ArticleCardWrapper>
   );

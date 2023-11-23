@@ -15,8 +15,8 @@ type ThemeProviderProps = {
 };
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(defaultThemeContext.theme);
-  const [themeMode, setThemeMode] = useState<ThemeMode>(defaultThemeContext.themeMode);
+  const [theme, setTheme] = useState(defaultThemeContext.theme);
+  const [themeMode, setThemeMode] = useState(defaultThemeContext.themeMode);
 
   const updateTheme = (newTheme: Theme, newThemeMode: ThemeMode): void => {
     setThemeMode(newThemeMode);

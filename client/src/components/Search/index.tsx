@@ -1,7 +1,6 @@
 import React, { ChangeEvent, Dispatch } from 'react';
-import { IntlShape, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { useTheme } from '../../hooks/useTheme';
-import { ThemeContextProps } from '../../types';
 import { SearchWrapper } from './style';
 
 type Props = {
@@ -10,8 +9,8 @@ type Props = {
 };
 
 const Search: React.FC<Props> = ({ searchText, setSearchText }) => {
-  const { formatMessage }: { formatMessage: IntlShape['formatMessage'] } = useIntl();
-  const { theme }: ThemeContextProps = useTheme();
+  const { formatMessage } = useIntl();
+  const { theme } = useTheme();
 
   const handleSearchTextChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setSearchText(event.target.value);

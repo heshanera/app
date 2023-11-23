@@ -1,11 +1,11 @@
 import React, { ReactElement, useState } from 'react';
-import { IntlShape, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import ArticleCard from '../../../components/ArticleCard';
 import EmptyView from '../../../components/EmptyView';
 import Placeholder from '../../../components/Placeholder';
 import Search from '../../../components/Search';
 import useProductFilter from '../../../hooks/useProductFilter';
-import { Article, Category } from '../../../types';
+import { Category, Article } from '../../../types';
 import { ProductGridWrapper } from './style';
 
 type Props = {
@@ -16,14 +16,13 @@ type Props = {
 const articles: Article[] = [];
 
 const ProductGrid: React.FC<Props> = ({ category, isLoading }) => {
-  const { formatMessage }: { formatMessage: IntlShape['formatMessage'] } = useIntl();
+  const { formatMessage } = useIntl();
+  const [searchText, setSearchText] = useState('');
 
-  const [searchText, setSearchText] = useState<string>('');
-
-  const filteredProducts: Article[] = useProductFilter(searchText, category?.categoryArticles?.articles || articles);
+  const filteredProducts = useProductFilter(searchText, category?.categoryArticles?.articles || articles);
 
   const renderPlaceholder = (): ReactElement => {
-    const placeholderCards: number[] = Array.from({ length: 20 }, (_, index: number) => index);
+    const placeholderCards = Array.from({ length: 20 }, (_, index) => index);
 
     return (
       <div>
@@ -31,7 +30,7 @@ const ProductGrid: React.FC<Props> = ({ category, isLoading }) => {
           <Placeholder width="50%" height="50px" borderRadius="12px" />
         </h2>
         <div className="product-grid">
-          {placeholderCards.map((_, index: number) => (
+          {placeholderCards.map((_, index) => (
             <Placeholder key={index} width="minmax(250px, 1fr)" height="400px" borderRadius="12px" />
           ))}
         </div>
@@ -47,7 +46,7 @@ const ProductGrid: React.FC<Props> = ({ category, isLoading }) => {
       </div>
       {filteredProducts?.length > 0 ? (
         <div className="product-grid">
-          {filteredProducts.map((article: Article, index: number) => (
+          {filteredProducts.map((article, index) => (
             <ArticleCard key={`${article?.name}-${index}`} article={article} />
           ))}
         </div>

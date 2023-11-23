@@ -28,7 +28,7 @@ const messagesMap: LocaleMessages = {
 };
 
 export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
-  const [locale, setLocale] = useState<string>(LOCALES.de_DE.code);
+  const [locale, setLocale] = useState(LOCALES.de_DE.code);
 
   return (
     <LocaleContext.Provider value={{ locale, setLocale }}>

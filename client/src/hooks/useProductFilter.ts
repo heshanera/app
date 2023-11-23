@@ -7,9 +7,11 @@ const useProductFilter = (searchText: string, productsList: Article[]): Article[
 
   useEffect(() => {
     let updatedList: Article[] = productsList;
+
     if (searchText.length > 0) {
-      updatedList = productsList?.filter((article: Article) => isSubstring(article.name, searchText));
+      updatedList = productsList?.filter((article) => isSubstring(article.name, searchText));
     }
+
     setFilteredProducts(updatedList);
   }, [searchText, productsList]);
 

@@ -1,14 +1,13 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useLocale } from '../../hooks/useLocale';
 import { useTheme } from '../../hooks/useTheme';
-import { LocaleContextType, ThemeContextProps } from '../../types';
 import { LanguageSelectorWrapper } from './style';
 import { getLanguageSelectorOptions, getLocaleName } from './utils';
 
 const LanguageSelector: React.FC = () => {
-  const { locale, setLocale }: LocaleContextType = useLocale();
+  const { locale, setLocale } = useLocale();
   const [languageOptions, setLanguageOptions] = useState<string[]>([]);
-  const { theme }: ThemeContextProps = useTheme();
+  const { theme } = useTheme();
 
   useEffect(() => {
     setLanguageOptions(getLanguageSelectorOptions());
@@ -21,7 +20,7 @@ const LanguageSelector: React.FC = () => {
   return (
     <LanguageSelectorWrapper theme={theme} data-testid="language-selector">
       <select id="language-select" value={locale} onChange={handleLanguageChange}>
-        {languageOptions.map((option: string) => (
+        {languageOptions.map((option) => (
           <option key={option} value={option}>
             {getLocaleName(option)}
           </option>

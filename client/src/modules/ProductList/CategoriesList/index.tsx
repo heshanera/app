@@ -1,9 +1,9 @@
 import React, { ReactElement, ReactFragment } from 'react';
-import { IntlShape, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { useHistory, RouteComponentProps, useLocation } from 'react-router-dom';
 import Placeholder from '../../../components/Placeholder';
 import { useTheme } from '../../../hooks/useTheme';
-import { ArticleCategory, ThemeContextProps } from '../../../types';
+import { ArticleCategory } from '../../../types';
 import { getCurrentUrlPath } from '../../../utils/locationUtils';
 import { CategoriesListWrapper } from './style';
 
@@ -13,13 +13,11 @@ type Props = {
 };
 
 const CategoriesList: React.FC<Props> = ({ categoriesList, isLoading }) => {
-  const history: RouteComponentProps['history'] = useHistory();
-  const location: RouteComponentProps['location'] = useLocation();
-  const { theme }: ThemeContextProps = useTheme();
-
-  const currentCategoryPath: string = getCurrentUrlPath(location?.pathname);
-
-  const { formatMessage }: { formatMessage: IntlShape['formatMessage'] } = useIntl();
+  const history = useHistory<RouteComponentProps['history']>();
+  const location = useLocation<RouteComponentProps['location']>();
+  const { theme } = useTheme();
+  const currentCategoryPath = getCurrentUrlPath(location?.pathname);
+  const { formatMessage } = useIntl();
 
   const handleCategoryNavigation = (urlPath: string) => (): void => {
     history.push(`/catalog/${urlPath}`);
@@ -36,7 +34,7 @@ const CategoriesList: React.FC<Props> = ({ categoriesList, isLoading }) => {
       <h3 className="category-header">{formatMessage({ id: 'categories', defaultMessage: 'Categories' })}</h3>
       <hr />
       <ul className="category-list">
-        {categoriesList?.map((category: ArticleCategory) => (
+        {categoriesList?.map((category) => (
           <li
             className={category?.urlPath === currentCategoryPath ? 'active' : ''}
             key={category?.urlPath}
@@ -55,7 +53,7 @@ const CategoriesList: React.FC<Props> = ({ categoriesList, isLoading }) => {
       <option value="" disabled>
         {formatMessage({ id: 'categories', defaultMessage: 'Categories' })}
       </option>
-      {categoriesList.map((option: ArticleCategory) => (
+      {categoriesList.map((option) => (
         <option
           data-testid="category-dropdown-option"
           onClick={handleCategoryNavigation(option?.urlPath)}
