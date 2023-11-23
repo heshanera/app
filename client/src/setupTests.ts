@@ -7,7 +7,6 @@ type ReactIntl = {
   formatMessage: jest.Mock<string>;
 };
 
-// mocking message and number formatters to have the default behavior
 jest.mock('react-intl', () => {
   const getDefaultFormatNumber = (value: number, options: Intl.NumberFormatOptions): string => {
     return new Intl.NumberFormat(undefined, options).format(value);
@@ -25,7 +24,6 @@ jest.mock('react-intl', () => {
   };
 });
 
-// mocking react router dom for useHistory and useLocation hooks
 jest.mock('react-router-dom', () => ({
   useHistory: jest.fn(),
   useLocation: jest.fn(),

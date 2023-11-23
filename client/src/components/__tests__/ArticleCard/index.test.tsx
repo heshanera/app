@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect'; // For additional matchers
+import '@testing-library/jest-dom/extend-expect';
 import ArticleCard from '../../ArticleCard';
 import { Article } from '../../../types';
 
@@ -33,12 +33,12 @@ describe('ArticleCard component', () => {
 
     let altTextElements = getAllByAltText('Sample Article');
 
-    fireEvent.click(altTextElements[1]); // Click on the first image
+    fireEvent.click(altTextElements[1]);
     altTextElements = getAllByAltText('Sample Article');
     expect(altTextElements[1].classList.contains('active')).toBe(true);
     expect(altTextElements[2].classList.contains('active')).toBe(false);
 
-    fireEvent.click(altTextElements[2]); // Click on the second image
+    fireEvent.click(altTextElements[2]);
     altTextElements = getAllByAltText('Sample Article');
     expect(altTextElements[1].classList.contains('active')).toBe(false);
     expect(altTextElements[2].classList.contains('active')).toBe(true);
