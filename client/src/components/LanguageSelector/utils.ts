@@ -1,12 +1,7 @@
 import { LOCALES } from '../../constants/locales';
 
 export const getLanguageSelectorOptions = (): string[] => {
-  const options: string[] = [];
-
-  Object.keys(LOCALES).forEach((locale: string): void => {
-    options.push(locale);
-  });
-
+  const options: string[] = Object.keys(LOCALES);
   return options;
 };
 

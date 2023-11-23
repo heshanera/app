@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import ArticleCard from '../../../components/ArticleCard';
 import EmptyView from '../../../components/EmptyView';
@@ -19,9 +19,10 @@ const ProductGrid: React.FC<Props> = ({ category, isLoading }) => {
   const { formatMessage }: { formatMessage: IntlShape['formatMessage'] } = useIntl();
 
   const [searchText, setSearchText] = useState<string>('');
+
   const filteredProducts: Article[] = useProductFilter(searchText, category?.categoryArticles?.articles || articles);
 
-  const renderPlaceHolder = (): ReactNode => {
+  const renderPlaceholder = (): ReactElement => {
     const placeholderCards: number[] = Array.from({ length: 20 }, (_, index: number) => index);
 
     return (
@@ -38,7 +39,7 @@ const ProductGrid: React.FC<Props> = ({ category, isLoading }) => {
     );
   };
 
-  const renderProductGrid = (): ReactNode => (
+  const renderProductGrid = (): ReactElement => (
     <div>
       <div className="grid-header">
         <h2>{`${category?.name || ''} (${category?.articleCount || 0})`}</h2>
@@ -52,20 +53,20 @@ const ProductGrid: React.FC<Props> = ({ category, isLoading }) => {
         </div>
       ) : (
         <EmptyView
-          headerText={`${formatMessage({
+          headerText={formatMessage({
             id: 'noProducts',
             defaultMessage: 'No Products',
-          })}`}
-          subText={`${formatMessage({
+          })}
+          subText={formatMessage({
             id: 'noProductsSubMessage',
             defaultMessage: 'No products available for the selected category',
-          })}`}
+          })}
         />
       )}
     </div>
   );
 
-  return <ProductGridWrapper>{isLoading ? renderPlaceHolder() : renderProductGrid()}</ProductGridWrapper>;
+  return <ProductGridWrapper>{isLoading ? renderPlaceholder() : renderProductGrid()}</ProductGridWrapper>;
 };
 
 export default ProductGrid;

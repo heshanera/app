@@ -11,7 +11,7 @@ const Header: React.FC = () => {
 
   return (
     <HeaderWrapper data-testid="header" theme={theme}>
-      <strong>{`${formatMessage({ id: 'home24', defaultMessage: 'home24' })}`}</strong>
+      <strong>{formatMessage({ id: 'home24', defaultMessage: 'home24' })}</strong>
       <LanguageSelector />
     </HeaderWrapper>
   );

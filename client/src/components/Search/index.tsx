@@ -24,10 +24,10 @@ const Search: React.FC<Props> = ({ searchText, setSearchText }) => {
         className="search-input"
         type="text"
         value={searchText}
-        placeholder={`${formatMessage({
+        placeholder={formatMessage({
           id: 'search',
           defaultMessage: 'Search',
-        })}`}
+        })}
         onChange={handleSearchTextChange}
       />
     </SearchWrapper>

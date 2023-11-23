@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactElement, ReactFragment } from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import { useHistory, RouteComponentProps, useLocation } from 'react-router-dom';
 import Placeholder from '../../../components/Placeholder';
@@ -25,15 +25,15 @@ const CategoriesList: React.FC<Props> = ({ categoriesList, isLoading }) => {
     history.push(`/catalog/${urlPath}`);
   };
 
-  const renderPlaceholder = (): ReactNode => (
+  const renderPlaceholder = (): ReactElement => (
     <div>
       <Placeholder width="100%" height="calc(100vh - 300px)" borderRadius="12px" />
     </div>
   );
 
-  const renderCategoriesList = (): ReactNode => (
+  const renderCategoriesList = (): ReactFragment => (
     <>
-      <h3 className="category-header">{`${formatMessage({ id: 'categories', defaultMessage: 'Categories' })}`}</h3>
+      <h3 className="category-header">{formatMessage({ id: 'categories', defaultMessage: 'Categories' })}</h3>
       <hr />
       <ul className="category-list">
         {categoriesList?.map((category: ArticleCategory) => (
@@ -50,10 +50,10 @@ const CategoriesList: React.FC<Props> = ({ categoriesList, isLoading }) => {
     </>
   );
 
-  const renderCategoriesDropdown = (): ReactNode => (
+  const renderCategoriesDropdown = (): ReactElement => (
     <select id="category-dropdown" defaultValue="">
       <option value="" disabled>
-        {`${formatMessage({ id: 'categories', defaultMessage: 'Categories' })}`}
+        {formatMessage({ id: 'categories', defaultMessage: 'Categories' })}
       </option>
       {categoriesList.map((option: ArticleCategory) => (
         <option

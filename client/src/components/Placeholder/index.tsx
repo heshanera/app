@@ -8,14 +8,12 @@ export type Props = {
   text?: string;
 };
 
-const Placeholder: React.FC<Props> = ({ height, width, borderRadius, text }) => {
-  return (
-    <PlaceholderWrapper height={height} width={width} borderRadius={borderRadius}>
-      <div data-testid="placeholder" className="placeholder animated">
-        {text && <span>{text}</span>}
-      </div>
-    </PlaceholderWrapper>
-  );
-};
+const Placeholder: React.FC<Props> = ({ height, width, borderRadius, text }) => (
+  <PlaceholderWrapper height={height} width={width} borderRadius={borderRadius}>
+    <div data-testid="placeholder" className="placeholder animated">
+      {text && <span>{text}</span>}
+    </div>
+  </PlaceholderWrapper>
+);
 
 export default Placeholder;

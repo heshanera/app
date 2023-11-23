@@ -25,7 +25,7 @@ const ProductList: React.FC = () => {
 
   useEffect(() => {
     if (data?.categories) {
-      setCategory(data?.categories[0]);
+      setCategory(data.categories[0]);
     }
   }, [data]);
 

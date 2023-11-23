@@ -9,11 +9,11 @@ type Props = {
 };
 
 const ArticleCard: React.FC<Props> = ({ article }) => {
-  const [selectedImage, setSelectedImage] = useState<number>(0);
   const { theme }: ThemeContextProps = useTheme();
-
   const { formatNumber }: { formatNumber: IntlShape['formatNumber'] } = useIntl();
   const { formatMessage }: { formatMessage: IntlShape['formatMessage'] } = useIntl();
+
+  const [selectedImage, setSelectedImage] = useState<number>(0);
 
   const handleSelectImage = (index: number) => (): void => {
     setSelectedImage(index);
@@ -22,8 +22,9 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
   return (
     <ArticleCardWrapper theme={theme}>
       <div className="product-image">
-        <img loading="lazy" alt={article?.name} src={article?.images[selectedImage].path} />
+        <img loading="lazy" alt={article?.name} src={article?.images[selectedImage]?.path} />
       </div>
+
       <div className="images-list">
         {article?.images?.map((image: Image, index: number) => (
           <section key={image?.path} onClick={handleSelectImage(index)} role="button">
@@ -36,13 +37,16 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
           </section>
         ))}
       </div>
+
       <div className="product-name">{article?.name}</div>
+
       <div>
         {formatNumber(article?.prices?.regular?.value / 100, {
           style: 'currency',
           currency: article?.prices?.currency,
         })}
       </div>
+
       <button className="add-to-cart-button">
         {`${formatMessage({ id: 'addToCart', defaultMessage: 'Add to cart' })}`}
       </button>

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode, useState, ReactElement } from 'react';
+import React, { createContext, useContext, ReactNode, useState } from 'react';
 import { THEMES } from '../constants/theme';
 import { Theme, ThemeContextProps, ThemeMode } from '../types';
 
@@ -14,7 +14,7 @@ type ThemeProviderProps = {
   children: ReactNode;
 };
 
-export const ThemeProvider = ({ children }: ThemeProviderProps): ReactElement => {
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(defaultThemeContext.theme);
   const [themeMode, setThemeMode] = useState<ThemeMode>(defaultThemeContext.themeMode);
 
