@@ -7,9 +7,7 @@ const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 export const defaultThemeContext: ThemeContextProps = {
   theme: THEMES['light'],
   themeMode: 'light',
-  setTheme: () => {
-    // Default theme context will not have a setter
-  },
+  setTheme: () => {},
 };
 
 type ThemeProviderProps = {
@@ -28,14 +26,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps): ReactElement =>
   return <ThemeContext.Provider value={{ theme, themeMode, setTheme: updateTheme }}>{children}</ThemeContext.Provider>;
 };
 
-/**
- * Get application theme context.
- * @returns {ThemeContextProps} The theme context containing theme-related values and functions.
- */
 export const useTheme = (): ThemeContextProps => {
   const context = useContext(ThemeContext);
   if (!context) {
-    // if theme is not initialized returning the default theme context
     return defaultThemeContext;
   }
   return context;

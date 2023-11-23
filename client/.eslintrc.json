@@ -31,6 +31,7 @@
             "always"
         ],
         "react/prop-types": "off", // Prop types are checked through TypeScript types
-        "@typescript-eslint/camelcase": ["error", { "allow": ["_"] }]
+        "@typescript-eslint/camelcase": ["error", { "allow": ["_"] }],
+        "@typescript-eslint/no-empty-function": ["error", { "allow": ["arrowFunctions"] }]
     }
 }

@@ -13,9 +13,7 @@ const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 export const defaultLocaleContext: LocaleContextType = {
   locale: LOCALES.de_DE.code,
-  setLocale: () => {
-    // Default locale context will not have a setter
-  },
+  setLocale: () => {},
 };
 
 type LocaleProviderProps = {
@@ -41,14 +39,9 @@ export const LocaleProvider: React.FC<LocaleProviderProps> = ({ children }) => {
   );
 };
 
-/**
- * Get application locale from the context
- * @returns {LocaleContextType} - locale and the locale setter
- */
 export const useLocale = (): LocaleContextType => {
   const context = useContext(LocaleContext);
   if (!context) {
-    // if context is not initialized returning the default locale context
     return defaultLocaleContext;
   }
   return context;

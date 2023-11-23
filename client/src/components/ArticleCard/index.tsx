@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IntlShape, useIntl } from 'react-intl';
 import { useTheme } from '../../hooks/useTheme';
-import { Article, Image, ThemeContextProps } from '../../types'; // TODO: check
+import { Article, Image, ThemeContextProps } from '../../types';
 import { ArticleCardWrapper } from './style';
 
 type Props = {
@@ -14,10 +14,6 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
 
   const { formatNumber }: { formatNumber: IntlShape['formatNumber'] } = useIntl();
   const { formatMessage }: { formatMessage: IntlShape['formatMessage'] } = useIntl();
-
-  const handleAddToCart = (): void => {
-    // TODO: implement add to cart
-  };
 
   const handleSelectImage = (index: number) => (): void => {
     setSelectedImage(index);
@@ -47,7 +43,7 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
           currency: article?.prices?.currency,
         })}
       </div>
-      <button onClick={handleAddToCart} className="add-to-cart-button">
+      <button className="add-to-cart-button">
         {`${formatMessage({ id: 'addToCart', defaultMessage: 'Add to cart' })}`}
       </button>
     </ArticleCardWrapper>

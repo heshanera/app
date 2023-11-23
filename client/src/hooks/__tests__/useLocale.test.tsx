@@ -3,7 +3,6 @@ import { render } from '@testing-library/react';
 import { renderHook, act } from '@testing-library/react-hooks';
 import { defaultLocaleContext, LocaleProvider, useLocale } from '../useLocale';
 
-// mocking react-intl
 jest.mock('react-intl', () => {
   const IntlProviderMock: React.FC = ({ children }: { children?: ReactNode }): ReactElement => <div>{children}</div>;
   return {
