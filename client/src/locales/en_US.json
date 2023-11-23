@@ -1,0 +1,9 @@
+{
+    "home24": "home24",
+    "categories": "Categories",
+    "search": "Search",
+    "footerMessage":  "All prices are in euros (€) including VAT and shipping costs.",
+    "addToCart": "Add to cart",
+    "noProducts": "No Products",
+    "noProductsSubMessage": "No products available for the selected category"
+}

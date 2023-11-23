@@ -1,0 +1,36 @@
+{
+    "env": {
+        "browser": true
+    },
+    "extends": [
+        "react-app",
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "react/prop-types": "off", // Prop types are checked through TypeScript types
+        "@typescript-eslint/camelcase": ["error", { "allow": ["_"] }]
+    }
+}
