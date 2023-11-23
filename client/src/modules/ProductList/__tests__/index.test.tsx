@@ -1,29 +1,35 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import ProductList from '..';
+import mockUseGraphqlRequest from '../../../hooks/useGraphqlRequest';
 
 jest.mock('../../../hooks/useGraphqlRequest', () => ({
+  ...jest.requireActual('../../../hooks/useGraphqlRequest'),
   __esModule: true,
   default: jest.fn(),
 }));
 
 describe('ProductList Component', () => {
-  it('renders product list component by fetching data', () => {
-    const mockUseGraphqlRequest = require('../../../hooks/useGraphqlRequest').default;
-    mockUseGraphqlRequest.mockReturnValueOnce(Promise.resolve({ isLoading: true, data: null })).mockReturnValueOnce(
-      Promise.resolve({
-        isLoading: false,
-        data: { categories: [{ childrenCategories: { list: [] } }] },
-      }),
-    );
+  it('renders product list component by fetching data', async () => {
+    const mockReturnValueOnce = jest
+      .fn()
+      .mockImplementationOnce(() => Promise.resolve({ isLoading: true, data: null }))
+      .mockImplementationOnce(() =>
+        Promise.resolve({
+          isLoading: false,
+          data: { categories: [{ childrenCategories: { list: [] } }] },
+        }),
+      );
+
+    (mockUseGraphqlRequest as jest.Mock).mockReturnValue(mockReturnValueOnce);
 
     const { container, rerender } = render(<ProductList />);
-    expect(require('../../../hooks/useGraphqlRequest').default).toHaveBeenCalledTimes(1);
+    expect(mockUseGraphqlRequest).toHaveBeenCalledTimes(1);
 
     const placeholder = container.querySelector('.placeholder');
     expect(placeholder).toBeDefined();
 
-    rerender(<ProductList />);
+    await rerender(<ProductList />);
 
     expect(mockUseGraphqlRequest).toHaveBeenCalledTimes(2);
 

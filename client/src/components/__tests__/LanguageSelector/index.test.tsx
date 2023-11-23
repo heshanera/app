@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, RenderResult } from '@testing-library/react';
 import { useLocale } from '../../../hooks/useLocale';
 import LanguageSelector from '../../LanguageSelector';
 
@@ -7,13 +7,17 @@ jest.mock('../../../hooks/useLocale');
 const mockUseLocale = useLocale as jest.Mock;
 
 describe('LanguageSelector component', () => {
+  let component: RenderResult;
+
   beforeEach(() => {
     mockUseLocale.mockReset();
   });
 
-  it('renders LanguageSelector component with options', async () => {
+  it('renders LanguageSelector component with options', () => {
     mockUseLocale.mockReturnValue({ locale: 'de_DE', setLocale: jest.fn() });
-    const { getByText } = render(<LanguageSelector />);
+    component = render(<LanguageSelector />);
+
+    const { getByText } = component;
 
     expect(getByText('EN')).toBeInTheDocument();
     expect(getByText('DE')).toBeInTheDocument();
@@ -22,8 +26,9 @@ describe('LanguageSelector component', () => {
   it('handles language change correctly', () => {
     const setLocaleMock = jest.fn();
     mockUseLocale.mockReturnValue({ locale: 'en_US', setLocale: setLocaleMock });
+    component = render(<LanguageSelector />);
 
-    const { getByRole } = render(<LanguageSelector />);
+    const { getByRole } = component;
 
     const selectElement = getByRole('combobox');
     fireEvent.change(selectElement, { target: { value: 'de_DE' } });

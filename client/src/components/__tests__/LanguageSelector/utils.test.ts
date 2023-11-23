@@ -6,7 +6,7 @@ describe('getLanguageSelectorOptions functionality', () => {
   it('returns an array of language codes', () => {
     const languageOptions = getLanguageSelectorOptions();
 
-    Object.keys(LOCALES).forEach((locale) => {
+    Object.keys(LOCALES).forEach((locale: string) => {
       expect(languageOptions).toContain(locale);
     });
 

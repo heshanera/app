@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, RenderResult } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import ArticleCard from '../../ArticleCard';
 import { Article } from '../../../types';
@@ -17,8 +17,14 @@ const mockArticle: Article = {
 };
 
 describe('ArticleCard component', () => {
+  let component: RenderResult;
+
+  beforeEach(() => {
+    component = render(<ArticleCard article={mockArticle} />);
+  });
+
   it('renders article information correctly', () => {
-    const { getByText, getAllByAltText } = render(<ArticleCard article={mockArticle} />);
+    const { getByText, getAllByAltText } = component;
 
     const altTextElements = getAllByAltText('Sample Article');
     altTextElements.forEach((element) => {
@@ -29,7 +35,7 @@ describe('ArticleCard component', () => {
   });
 
   it('changes selected image when clicking on image in the list', () => {
-    const { getAllByAltText } = render(<ArticleCard article={mockArticle} />);
+    const { getAllByAltText } = component;
 
     let altTextElements = getAllByAltText('Sample Article');
 

@@ -19,9 +19,7 @@ describe('useLocale', () => {
   });
 
   it('provides correct locale context when initialized', () => {
-    const Wrapper = ({ children }: { children: ReactNode }): ReactElement => (
-      <LocaleProvider>{children}</LocaleProvider>
-    );
+    const Wrapper: React.FC = ({ children }): ReactElement => <LocaleProvider>{children}</LocaleProvider>;
     const { result } = renderHook(() => useLocale(), {
       wrapper: Wrapper,
     });
@@ -33,9 +31,7 @@ describe('useLocale', () => {
   });
 
   it('changes locale correctly', () => {
-    const Wrapper = ({ children }: { children: ReactNode }): ReactElement => (
-      <LocaleProvider>{children}</LocaleProvider>
-    );
+    const Wrapper: React.FC = ({ children }): ReactElement => <LocaleProvider>{children}</LocaleProvider>;
     const { result } = renderHook(() => useLocale(), {
       wrapper: Wrapper,
     });
