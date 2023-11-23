@@ -12,7 +12,7 @@ const ArticleCard: React.FC<Props> = ({ article }) => {
   const { theme } = useTheme();
   const { formatNumber, formatMessage } = useIntl();
 
-  const [selectedImage, setSelectedImage] = useState<number>(0);
+  const [selectedImage, setSelectedImage] = useState(0);
 
   const handleSelectImage = (index: number) => (): void => {
     setSelectedImage(index);
